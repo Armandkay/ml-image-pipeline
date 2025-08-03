@@ -31,7 +31,7 @@ cd ml-image-pipeline
 ml-image-pipeline/
 ├── README.md
 ├── notebook/
-│   └── ml_image_pipeline.ipynb
+│   └── ml_pipeline_final.ipynb
 ├── src/
 │   ├── main.py
 │   ├── retrain.py
