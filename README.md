@@ -1,56 +1,63 @@
-````markdown
-# ML Image Classification Pipeline
+# 🧠 ML Image Classification Pipeline
 
-## Project Overview
+## 🎯 Project Overview
 
-This project implements a complete machine learning pipeline for image classification using convolutional neural networks (CNN). It covers:
+This project demonstrates an end-to-end image classification pipeline using a Convolutional Neural Network (CNN). It includes:
 
-- Data acquisition and preprocessing
-- Model creation and evaluation
-- Deployment of the model through a FastAPI backend
-- Model retraining triggered by new data uploads
-- API endpoints for prediction, retraining, and status monitoring
-- Flood testing to evaluate API performance under load
+- Image preprocessing and augmentation
+- CNN model training and evaluation
+- A retraining mechanism for new uploaded data
+- A web-based API built with FastAPI
+- A user interface to predict and update model behavior
+- Deployment-ready structure with modular components
 
 ---
 
-## GitHub Repository
+## 📹 Video Demonstration
 
-Clone the project repository:
+You can watch a full walkthrough of this project here:
+
+👉 [**Watch the video demo**](#) ← *https://www.loom.com/share/a14b94e8b253495ab066e89a643ede9a?sid=db9828d9-5a89-4eb7-ae82-3f67ed43045f*
+
+---
+
+## 📂 GitHub Repository
+
+To get started, clone the repository:
 
 ```bash
 git clone https://github.com/Armandkay/ml-image-pipeline.git
 cd ml-image-pipeline
-````
+```
 
 ---
 
-## Project Structure
+## 🧾 Project Structure
 
 ```
 ml-image-pipeline/
 ├── README.md
 ├── notebook/
-│   └── ml_pipeline_final.ipynb
+│   └── ml_pipeline_final.ipynb        # Full development notebook
 ├── src/
-│   ├── main.py
-│   ├── retrain.py
-│   ├── preprocessing.py
-│   ├── model.py
-│   └── prediction.py
+│   ├── main.py                        # FastAPI backend
+│   ├── retrain.py                     # Retraining script
+│   ├── preprocessing.py               # Preprocessing logic
+│   ├── model.py                       # CNN architecture
+│   └── prediction.py                  # Image prediction handler
 ├── data/
-│   ├── train/
-│   └── test/
+│   ├── train/                         # Training images (organized by class)
+│   └── test/                          # Test images
 ├── models/
-│   └── model.h5
+│   └── model.h5                       # Trained model weights
 ├── requirements.txt
 ```
 
 ---
 
-## Setup Instructions
+## ⚙️ Setup Instructions
 
-1. (Optional) Create a virtual environment:
+1. *(Optional)* Create and activate a virtual environment:
 
 ```bash
 python -m venv venv
@@ -64,13 +71,13 @@ venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 ```
 
-3. Run the FastAPI application:
+3. Start the FastAPI server:
 
 ```bash
 uvicorn src.main:app --reload
 ```
 
-4. Open the interactive API documentation in your browser:
+4. Open the API documentation in your browser:
 
 ```
 http://127.0.0.1:8000/docs
@@ -78,50 +85,63 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## Usage Guide
+## 🚀 Usage Guide
 
-### Predict an Image
+### 🧠 Predict an Image
+- Use the `/predict` endpoint in the API docs or via the web UI.
+- Upload a single image file.
+- The model returns the predicted class label.
 
-* Use the `/predict` endpoint.
-* Upload a single image file.
-* The API returns the predicted class label.
+### 📤 Upload New Training Data
+- Use the `/upload-data` endpoint.
+- Upload a `.zip` file with images inside folders named by class (e.g., `cat/`, `dog/`).
+- Images are saved to the `data/train/` folder.
 
-### Upload Training Data
+### 🔁 Retrain the Model
+- Call the `/retrain` endpoint.
+- It will retrain the CNN on the updated dataset.
+- The updated weights are saved as `models/model.h5`.
 
-* Use the `/upload-data` endpoint.
-* Upload a ZIP file containing images organized by class folders.
-* The images will be extracted to the `data/train` folder.
-
-### Retrain the Model
-
-* Use the `/retrain` endpoint.
-* The model will retrain using the current training data.
-* The updated model will be saved to `models/model.h5`.
-
-### Check API Status
-
-* Use the `/status` endpoint.
-* Confirms the API is running and responsive.
+### ✅ API Health Check
+- Call the `/status` endpoint to verify the API is running.
 
 ---
 
-## Flood Testing Summary
+## 📈 Evaluation Metrics
 
-* API performance was evaluated under simulated load using Locust.
-* Latency and throughput metrics were collected at different concurrency levels.
-* Detailed test results and graphs are available in the project documentation.
+The model is evaluated using:
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion matrix (visualized in the notebook)
 
----
-
-## Contact Information
-
-Armand Kayiranga
-Email: [a.kayiranga1@alustudent.com](mailto:a.kayiranga1@alustudent.com)
+Early stopping and dropout were used to prevent overfitting.
 
 ---
 
-## License
+## 🧪 Model Training
 
-This project is licensed under the MIT License.
+- The model is a Sequential CNN using 2 convolutional layers and max pooling.
+- Input images are grayscale, resized to 28x28.
+- Uses `Adam` optimizer and `sparse_categorical_crossentropy` loss.
+- Trained in a Google Colab notebook using uploaded image datasets.
 
-```
+---
+
+## ❌ Performance Testing
+
+> Load testing using Locust was not implemented, as it was not part of the rubric. The focus was on the retraining, prediction, evaluation, and deployment processes.
+
+---
+
+## 📬 Contact
+
+**Armand Kayiranga**  
+📧 [a.kayiranga1@alustudent.com](mailto:a.kayiranga1@alustudent.com)
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
